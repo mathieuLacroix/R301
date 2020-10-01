@@ -1,0 +1,6 @@
+{
+    "require": {
+        "consolidation/robo": ">= 1.0",
+        "henrikbjorn/lurker": ">= 1.2",
+        "symplify/easy-coding-standard-prefixed": ">= 7"
+    }}

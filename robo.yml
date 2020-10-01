@@ -1,0 +1,7 @@
+command:
+  sql:
+    options:
+      login: 
+      host: 
+      db: 
+      sgbd: 
