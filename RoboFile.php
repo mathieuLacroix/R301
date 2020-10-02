@@ -19,7 +19,7 @@ class RoboFile extends \Robo\Tasks
         $password = $this->askHidden("Database password?");
 
         // Set login to the username env variable if not defined
-        $login ??= getenv('USERNAME');
+        $login = isset($login) ? $login : getenv('USERNAME');
 
         if ($sgbd == "psql") {
             $command = "PGPASSWORD=$password psql -U $login -d $db -h $host < sql/database_nobel_psql.sql";
