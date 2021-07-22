@@ -1,8 +1,11 @@
 <?php
 /**
- * This is project's console commands configuration for Robo task runner.
- *
- * @see http://robo.li/
+ * Fichier de configuration pour le task runner Robo (http://robo.li/) pour le module M3104
+ * 
+ * Définit 3 actions : 
+ * - sql : crée les tables categories et nobels nécessaires pour les TP 2 et 3
+ * - ecs : lance la commande easy coding standard avec une configuration spécifique
+ * - sync : permet la synchronisation du répertoire de travail avec le répertoire public_html
  */
 
 
@@ -47,7 +50,7 @@ class RoboFile extends \Robo\Tasks
     /**
      * Synchronisation d'un Répertoire. Cela crée une copie conforme du répertoire dans $dest et met à jour automatiquement le répertoire en cas de modification.
      *
-     * @param [string] $src répertoire à syncrhoniser cours (web par défaut)
+     * @param [string] $src répertoire à syncrhoniser (web par défaut)
      */
     public function sync($src = "web", $opts = ['dest' => null])
     {
