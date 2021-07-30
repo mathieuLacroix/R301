@@ -4,9 +4,9 @@ Ce dépôt contient les différents fichiers utiles pour réaliser les TP du mod
 
 ## Énoncés des TP
 
-- [TP1](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP1/)
-- [TP2](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP2/)
-- [TP3](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP3/)
+- [TP1](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP1/)
+- [TP2](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP2/)
+- [TP3](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP3/)
 
 ## Outils utilisés
 
