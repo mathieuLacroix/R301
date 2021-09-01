@@ -40,8 +40,10 @@ class RoboFile extends \Robo\Tasks
      * Lance l'outil EasyCodingStandard sur le fichier de code passé en paramètre ou sur les fichiers contenus dans le répertoire passé en paramètre
      *
      * @param [string] $fileOrDir fichier ou répertoire à tester
+     * @param array $opts
+     * @option $fix corrige automatiquement les erreurs détectées
      */
-    public function ecs($fileOrDir, $opts = ['fix' => false])
+    public function check($fileOrDir = "web", $opts = ['fix' => false])
     {
         $cmd = 'ecs check ' . $fileOrDir . ($opts['fix'] ? " --fix" : "");
         $this->taskExec($cmd)->run();
