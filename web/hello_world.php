@@ -14,6 +14,3 @@ echo "<h1> Hello world!</p>";
 
 </body>
 </html>
-
-<?php
-
