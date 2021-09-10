@@ -1,5 +1,4 @@
--- DROP TABLE nobels, categories;
-
+DROP TABLE IF EXISTS nobels, categories;
 
 CREATE TABLE categories (
     category VARCHAR(128) NOT NULL,

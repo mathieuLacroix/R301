@@ -2,8 +2,12 @@
 /**
  * Fichier de configuration pour le task runner Robo (http://robo.li/) pour le module M3104
  * 
- * Définit 3 actions : 
- * - sql : crée les tables categories et nobels nécessaires pour les TP 2 et 3
+ * Définit les actions suivantes : 
+ * - sql:
+ *  - nobel : crée les tables categories et nobels nécessaires pour les TP 2 et 3
+ *  - passwords : crée la table passwords pour le TP sur la sécurité
+ *  - simpson : crée la table personnages pour le TP de révision du chapitre 2
+ *  - all : crée toutes les tables
  * - ecs : lance la commande easy coding standard avec une configuration spécifique
  * - sync : permet la synchronisation du répertoire de travail avec le répertoire public_html
  */
@@ -11,12 +15,7 @@
 
 class RoboFile extends \Robo\Tasks
 {
-    /**
-     * Crée les tables categories et nobels (les supprime avant si elles existent déjà)
-     */
-    public function sql($opts = ['sgbd' => 'psql', 'login' => null, "db" => "etudiants", "host" => "aquabdd"])
-    {
-        extract($opts);
+    private function run_sql_files($sgbd, $login, $db, $host, ...$sqls){
 
         // Ask the password through the terminal
         $password = $this->askHidden("Database password?");
@@ -24,15 +23,49 @@ class RoboFile extends \Robo\Tasks
         // Set login to the username env variable if not defined
         $login = isset($login) ? $login : getenv('USERNAME');
 
-        if ($sgbd == "psql") {
-            $command = "PGPASSWORD=$password psql -U $login -d $db -h $host < sql/database_nobel_psql.sql";
-        } else {
-            $command = "$sgbd --user=$login --password=$password --host=$host $db < sql/database_nobel_mysql.sql";
-        }
+        $ok = true;
+        foreach($sqls as $sql){
 
-        $res = $this->taskExec($command)->silent(true)->run();
-        if ($res->wasSuccessful()) {
+            if ($sgbd == "psql") {
+                $command = "PGPASSWORD=$password psql -U $login -d $db -h $host < sql/$sql";
+            } else {
+                $command = "$sgbd --user=$login --password=$password --host=$host $db < sql/$sql";
+            }
+            $res = $this->taskExec($command)->silent(true)->run();
+            $ok = $ok && $res->wasSuccessful();
+        }
+        return $ok;
+    }
+
+    public function sqlNobel($opts = ['sgbd' => 'psql', 'login' => null, "db" => "etudiants", "host" => "aquabdd"]){
+        extract($opts);
+        $ok = $this->run_sql_files($sgbd, $login, $db, $host, "database_nobel.sql");
+        if ($ok) {
             $this->say("Les tables categories et nobels ont été créées/réinitialisées !");
+        }
+    }
+    
+    public function sqlPasswords($opts = ['sgbd' => 'psql', 'login' => null, "db" => "etudiants", "host" => "aquabdd"]){
+        extract($opts);
+        $ok = $this->run_sql_files($sgbd, $login, $db, $host, "database_passwords.sql");
+        if ($ok) {
+            $this->say("La table passwords a été créée/réinitialisée !");
+        }
+    }
+
+    public function sqlSimpson($opts = ['sgbd' => 'psql', 'login' => null, "db" => "etudiants", "host" => "aquabdd"]){
+        extract($opts);
+        $ok = $this->run_sql_files($sgbd, $login, $db, $host, "database_simpson.sql");
+        if ($ok) {
+            $this->say("La table personnages a été créée/réinitialisée !");
+        }
+    }
+
+    public function sqlAll($opts = ['sgbd' => 'psql', 'login' => null, "db" => "etudiants", "host" => "aquabdd"]){
+        extract($opts);
+        $ok = $this->run_sql_files($sgbd, $login, $db, $host, "database_nobel.sql", "database_passwords.sql", "database_simpson.sql");
+        if ($ok) {
+            $this->say("Les tables categories, nobels, passwords et personnages ont été créées/réinitialisées !");
         }
     }
 
