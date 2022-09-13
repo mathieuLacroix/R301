@@ -103,7 +103,8 @@ class RoboFile extends \Robo\Tasks
             $src,
             function () use ($src, $dest) {
                 $this->taskMirrorDir([$src => $dest])->run();
-            }
+            },
+            \Lurker\Event\FilesystemEvent::ALL
         )->run();
     }
 }
