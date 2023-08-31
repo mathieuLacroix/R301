@@ -1,18 +1,18 @@
-# TP de programmation Web serveur M3104 (IUT de Villetaneuse)
+# TP de programmation Web serveur R301 (IUT de Villetaneuse)
 
-Ce dépôt contient les différents fichiers utiles pour réaliser les TP du module *Programmation Web Serveur (M3104)* dont le responsable est Mathieu Lacroix.
+Ce dépôt contient les différents fichiers utiles pour réaliser les TP de la ressource *Programmation Web Serveur (R301)* dont le responsable est Mathieu Lacroix.
 
 ## Énoncés des TP
 
-- [TP1](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP1/)
-- [TP2](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP2/)
-- [TP3](https://lipn.univ-paris13.fr/~lacroix/Ressources/WebS3/TP/TP3/)
+- [TP1](https://lipn.univ-paris13.fr/~lacroix/teaching/R301/TP/TP1/)
+- [TP2](https://lipn.univ-paris13.fr/~lacroix/teaching/R301/TP/TP2/)
+- [TP3](https://lipn.univ-paris13.fr/~lacroix/teaching/R301/TP/TP3/)
 
 ## Outils utilisés
 
 - Pour programmer en PHP, il suffit d'avoir un serveur PHP et une base de données opérationnelle. Ceci peut être fait sur un ordinateur personnel en installant [LAMP](https://doc.ubuntu-fr.org/lamp) (linux), [WAMP](https://www.wampserver.com/) (windows) ou [MAMP](https://www.mamp.info/fr/downloads/) (Mac). Les ordinateurs ont déjà un serveur local d'installé.
 
-- Pour coder, il faut un éditeur de texte. Celui conseillé dans les salles de TP est [Atom](https://atom.io/). Sur un ordinateur personnel, préférer [Visual Studio Code](https://code.visualstudio.com/).
+- Pour coder, il faut un éditeur de texte. Celui conseillé est [Visual Studio Code](https://code.visualstudio.com/).
 
 - On utilisera [Easy Coding Standard (`ecs`)](https://github.com/symplify/easy-coding-standard) pour vérifier la qualité du code.
 
@@ -25,13 +25,32 @@ Ce dépôt contient les différents fichiers utiles pour réaliser les TP du mod
 
 ### Synchronisation du répertoire (uniquement sur les ordinateurs de l'IUT)
 
-Le présent dépôt doit être cloné dans votre répertoire de travail (`/home/student/905/NUMERO_ETUDIANT`) pour être sauvegardé. Par contre, pour que vos scripts PHP soient accessibles sur le serveur local, ils doivent se trouver dans le répertoire (non sauvegardé) `/home/NUMERO_ETUDIANT/public_html`. Pour éviter de faire une copie manuelle des fichiers dans le répertoire, on peut utiliser la commande :
+Votre code doit être stocké dans votre répertoire de travail (`~/Bureau/Mes_Montages/$USER`) pour être sauvegardé d'une séance sur l'autre et il doit aussi être dans le répertoire `/home/$USER/public_html` (non sauvegardé) pour être accessible via le serveur local, c'est-à-dire accessible via `http://localhost/~VOTRE_NUMERO_ETUDIANT/chemin/nom_du_fichier`.
+
+Pour éviter d'avoir plusieurs copies des fichiers, il est conseillé d'utiliser le task runner `robo`. L'action `sync` permet de copier vos fichiers php dans le répertoire `public_html` à chaque modification.
+
+#### Initialisation de l'environnement de travail
+
+Lors de la première séance, ouvrez un terminal et exécutez les commandes suivantes :
 
 ```bash
-robo sync
+cd ~/Bureau/Mes_Montages/$USER
+git clone https://github.com/mathieuLacroix/R301.git
 ```
 
-Le contenu du répertoire `web` (contenu dans le répertoire courant) est alors copié dans le répertoire accessible au serveur local. De plus, chaque fois que vous modifiez/ajoutez/supprimez un fichier du répertoire, la modification est automatiquement appliquée au répertoire `public_html`.
+#### Au début de chaque séance
+
+Ouvrez un terminal et exécutez les commandes suivantes :
+
+```bash
+cd ~/Bureau/Mes_Montages/$USER/R301
+code web/
+robo sync
+```
+**Attention :** Il faut laisser `robo` s'exécuter tout au long de la séance. Vous devez donc laisser le terminal ouvert avec `robo sync` actif. 
+
+**Attention :** Vous devez absolument mettre tous vos fichiers de code dans le répertoire `web`.
+
 
 **Remarque :** il est possible de préciser un autre répertoire dans la commande. Par exemple, si le répertoire `web` contient le répertoire `tp1`, il est possible de synchroniser ce dernier avec `public_html` avec la commande :
 
